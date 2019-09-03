@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
 操作日志，crash 日志
                    DESC
 
-  spec.homepage     = "http://EXAMPLE/CCPLog"
+  spec.homepage     = "hhttps://github.com/coolboy-ccp/CCPLog"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
