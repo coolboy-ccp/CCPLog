@@ -38,7 +38,6 @@ class CrashLog {
             "date" : Date().description
             ]).description
         CCPLog.log(info: info, type: .crash, common: CrashLogCommon())
-        saveToLocal()
     }
     
 }
