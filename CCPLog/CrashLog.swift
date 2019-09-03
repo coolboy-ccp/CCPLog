@@ -30,7 +30,7 @@ public class CrashLog {
     }
 }
 
-fileprivate func signalHandle(_ signal: Int32) {
+func signalHandle(_ signal: Int32) {
     let info = JSON([
         "name" : "signal",
         "reason" : "occur a signal crash",
