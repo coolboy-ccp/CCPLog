@@ -22,12 +22,16 @@ public class CrashLog {
                 ]))
         }
         signal(SIGABRT, signalHandle)
-        signal(SIGILL, signalHandle);
-        signal(SIGSEGV, signalHandle);
-        signal(SIGFPE, signalHandle);
-        signal(SIGBUS, signalHandle);
-        signal(SIGPIPE, signalHandle);
+        signal(SIGILL, signalHandle)
+        signal(SIGSEGV, signalHandle)
+        signal(SIGFPE, signalHandle)
+        signal(SIGBUS, signalHandle)
+        signal(SIGPIPE, signalHandle)
     }
+}
+
+func saveToLocal(_ json: JSON) { 
+    CCPLog.log(info: json.description, type: .crash, common: CrashLogCommon())
 }
 
 func signalHandle(_ signal: Int32) {
@@ -37,8 +41,8 @@ func signalHandle(_ signal: Int32) {
         "stacks" : Thread.callStackSymbols,
         "code" : signal,
         "date" : Date().description
-        ]).description
-    CCPLog.log(info: info, type: .crash, common: CrashLogCommon())
+        ])
+    saveToLocal(info)
 }
 
 struct CrashLogCommon:  LogCommon{
