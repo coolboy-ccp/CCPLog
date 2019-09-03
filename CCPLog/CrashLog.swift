@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-class CrashLog {
+public class CrashLog {
     static func install() {
         NSSetUncaughtExceptionHandler { (exception) in
             let stacks = exception.callStackSymbols
@@ -28,18 +28,17 @@ class CrashLog {
         signal(SIGBUS, signalHandle);
         signal(SIGPIPE, signalHandle);
     }
-    
-    func signalHandle(_ signal: Int32) {
-        let info = JSON([
-            "name" : "signal",
-            "reason" : "occur a signal crash",
-            "stacks" : Thread.callStackSymbols,
-            "code" : signal,
-            "date" : Date().description
-            ]).description
-        CCPLog.log(info: info, type: .crash, common: CrashLogCommon())
-    }
-    
+}
+
+fileprivate func signalHandle(_ signal: Int32) {
+    let info = JSON([
+        "name" : "signal",
+        "reason" : "occur a signal crash",
+        "stacks" : Thread.callStackSymbols,
+        "code" : signal,
+        "date" : Date().description
+        ]).description
+    CCPLog.log(info: info, type: .crash, common: CrashLogCommon())
 }
 
 struct CrashLogCommon:  LogCommon{
