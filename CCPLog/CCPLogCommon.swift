@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CCPAppInfo
 
 /// log通用配置
 /// system表示系统级的，可以写入name, version等信息
