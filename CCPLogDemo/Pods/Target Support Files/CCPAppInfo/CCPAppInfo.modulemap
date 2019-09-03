@@ -1,6 +1,0 @@
-framework module CCPAppInfo {
-  umbrella header "CCPAppInfo-umbrella.h"
-
-  export *
-  module * { export * }
-}

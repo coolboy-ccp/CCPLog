@@ -93,7 +93,7 @@ spec.swift_version = "5.0"
   #
 
   spec.source_files  = "CCPLog/*.swift"
-#spec.exclude_files = "Classes/Exclude"
+spec.exclude_files = "CCPLogDemo"
 
   # spec.public_header_files = "Classes/**/*.h"
 
