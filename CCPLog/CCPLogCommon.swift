@@ -44,4 +44,4 @@ public extension LogCommon {
     }
 }
 
-struct LogCommonDefault: LogCommon {}
+public struct LogCommonDefault: LogCommon {}
