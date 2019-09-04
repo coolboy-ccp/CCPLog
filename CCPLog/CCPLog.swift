@@ -19,7 +19,7 @@ public enum LogType: String {
 
 public typealias LogUploadCallback = (_ data: Data, _ completion: (Bool) -> ()) -> ()
 
-class CCPLog {
+public class CCPLog {
     
     public static func log(info: String, type: LogType = .info, common: LogCommon = LogCommonDefault()) {
         instance.logCommon = common
@@ -31,6 +31,10 @@ class CCPLog {
         instance.upload(handler: handler)
     }
     
+    public static var data: Data? {
+        return instance.data
+    }
+    
     private let logQueue = DispatchQueue(label: "CCPLogQueue")
     private var logCommon: LogCommon = LogCommonDefault()
     //确保上传任务的单一性
@@ -38,11 +42,11 @@ class CCPLog {
     /*
      * 在发起upload的时候，获取当前log的offset，当上传成功，删除之前的log
      */
-     private var removeOffset: UInt64 = 0
+    private var removeOffset: UInt64 = 0
     
-    //不存储在cache或temp的原因是怕清除缓存时误删
     private lazy var logPath: String = {
-        return "NSHomeDirectory()/\(logCommon.fileName)"
+        var cache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        return cache.appendingPathComponent(logCommon.fileName).path
     }()
     
     private func logString(info: String, type: LogType) -> String {
@@ -50,7 +54,7 @@ class CCPLog {
     }
     
     private static let instance = CCPLog()
-   
+    
     private init() {}
     
     private var data: Data? {
